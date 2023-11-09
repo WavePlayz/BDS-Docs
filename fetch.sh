@@ -8,12 +8,14 @@ echo "Minecraft v$LINUX_PREVIEW_LATEST - $DOWNLOAD_URL"
 
 wget $DOWNLOAD_URL -q -O bds.zip
 unzip bds.zip -d bds
+
 rm bds.zip
-
-echo '{ "generate_documentation": true }' > 'bds/test_config.json'
-
+rm -rf docs
 cd bds
+
+echo '{ "generate_documentation": true }' > 'test_config.json'
 ./bedrock_server
 
-cp -r docs ../docs
+mv docs ../docs
+cd ..
 rm -r bds
